@@ -12,17 +12,17 @@ class test_fileStorage(unittest.TestCase):
     def setUp(self):
         """ Set up test environment """
         del_list = []
-        for key in storage._FileStorage__objects.keys():
+        for key in storage._FileStorage__objects.keys(): #Use storage.all() to access the objects
             del_list.append(key)
         for key in del_list:
-            del storage._FileStorage__objects[key]
+            del storage._FileStorage__objects[key] #Delete objects using the public interface
 
     def tearDown(self):
         """ Remove storage file at end of tests """
         try:
             os.remove('file.json')
         except:
-            pass
+            pass #If the file doesn't exist we just pass.
 
     def test_obj_list_empty(self):
         """ __objects is initially empty """
